@@ -24,4 +24,17 @@ Cloud technologies repository, semester IV.
 
 **lab03**
 
-- ``build`` - build custom docker image
+- ``build -f failname .`` - build custom docker image with name ``filename``
+
+**lecture**
+
+- ``run -p local-port:server-port`` - port mapping
+- ``run -v`` - mapping directories
+- ``exec -it ID sh`` - run container shell
+- ``netwokt ls`` - show networking 
+- ``network inspect`` - show extra details
+- ``network create NAME`` - create own docker network
+
+### Something 
+
+- ``ip addr`` - IP checking
