@@ -45,15 +45,19 @@ CMD node index.js
 - ``EXPOSE`` - define the network ports that this container will listen on at runtime
 - ``CMD`` - provide defaults for an executing container, there can only be one CMD instruction in a Dockerfile
 
-**lecture**
+**lectures**
 
 - ``run -p local-port:server-port`` - port mapping
 - ``run -v`` - mapping directories
 - ``exec -it ID sh`` - run container shell
-- ``netwokt ls`` - show networking 
+- ``netwokt ls`` - show networking
 - ``network inspect`` - show extra details
 - ``network create NAME`` - create own docker network
 
-### Something 
+### Something
 
 - ``ip addr`` - IP checking
+
+### My docker images
+
+- https://hub.docker.com/repository/docker/azalurg/node-server
