@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  mybackend:
+    restart: always
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./mybackend
+  
+  mynginx:
+    restart: always
+    build: 
+      dockerfile: Dockerfile
+      context: ./mynginx
+    ports:
+      -  '9090:80'
