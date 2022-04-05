@@ -1,9 +1,10 @@
 # cloud-technologies
+
 Cloud technologies repository, semester IV.
 
 ## cheat sheet
 
-**lab01**
+### lab01
 
 - ``ps -a`` - show all containers
 - ``pull`` - download docker image
@@ -12,21 +13,21 @@ Cloud technologies repository, semester IV.
 - ``rm`` - delete a stopped container
 - ``rmi`` - delete image
 - ``stop`` - stop container
-- ``kill`` - force stop 
+- ``kill`` - force stop
 - ``prune`` - ???
 
-**lab02**
+### lab02
 
 - ``run -it`` - create container and start with input/output signals
 - ``logs`` - get logs from container
 - ``exec`` - access the running container / execute the command inside the container
 - ``create`` - create container
 
-**lab03**
+### lab03
 
-- ``build -f failname .`` - build custom docker image with name ``filename``
+- ``build -f filename .`` - build custom docker image with name ``filename``
 
-**lab04**
+### lab04
 
 ```Docker
 FROM node:14                    
@@ -45,12 +46,20 @@ CMD node index.js
 - ``EXPOSE`` - define the network ports that this container will listen on at runtime
 - ``CMD`` - provide defaults for an executing container, there can only be one CMD instruction in a Dockerfile
 
-**lectures**
+### lab05
+
+- ``network create name`` - creates a new network
+- ``network ls`` - lists all the networks the docker knows about
+- ``network rm name`` - removes one or more networks by name or identifier
+- ``network inspect name`` - returns information about one or more networks
+- ``docker network connect NETWORK CONTAINER`` - connects a container to a network
+
+### lectures
 
 - ``run -p local-port:server-port`` - port mapping
 - ``run -v`` - mapping directories
 - ``exec -it ID sh`` - run container shell
-- ``netwokt ls`` - show networking
+- ``network ls`` - show networking
 - ``network inspect`` - show extra details
 - ``network create NAME`` - create own docker network
 
