@@ -1,7 +1,5 @@
 const express = require('express');
 const app = express();
-const fs= require("fs");
-
 
 app.use(express.json());
 
@@ -12,23 +10,41 @@ app.get('/nwd', async (req, res) => {
 
 app.post('/nwd', async (req, res) => {
 
-    const a = req.body.a;
-    const b = req.body.b;
-    const nwd = req.body.nwd;
-    const message = {
-        toInsert: req.body
-    };
+    let a = req.body.a;
+    let b = req.body.b;
+    const a_save = req.body.a;
+    const  b_save = req.body.b;
 
-    await client.query(`INSERT INTO nwd (a, b, nwd) VALUES (${a}, ${b}, ${nwd})`)
-    return res.send(message);
+    while(b!=0)
+    {
+        let r = a%b;
+        a = b;
+        b = r;
+    }
+
+    const message = {
+        "a": a_save,
+        "b": b_save,
+        "result": a
+    };
+    try{
+      await client.query(`INSERT INTO nwd (a, b, result) VALUES (${a_save}, ${b_save}, ${a})`)
+      return res.send(message);
+    }
+    catch(err){
+      return res.send(err.mes)
+    }
+    
 });
 
 app.get('/nwd/result', async (req, res) => {
     const a = req.body.a;
     const b = req.body.b;
-    const result = client.query(`SELECT result FROM nwd WHERE a = ${a} AND b = ${b};`)
+    
+    const result = await client.query(`SELECT result FROM nwd WHERE a = ${a} AND b = ${b};`);
+
     return res.send({
-        result: result
+        result: result.rows
     });
 });
 
@@ -45,13 +61,19 @@ const { Client } = require('pg');
 const client = new Client(dbConnData);
 console.log('Connection parameters: ');
 console.log(dbConnData);
-const q = require("./nwd.sql")
+
 client
   .connect()
-  .then(async () => {
-    await client.query(q);
+  .then( () => {
     console.log('Connected to PostgreSQL');
+    client.query(`CREATE TABLE IF NOT EXISTS nwd (
+      a INT NOT NULL,
+      b INT NOT NULL,
+      result INT NOT NULL,
+      PRIMARY KEY(a, b)
+  );`)
     const port = process.env.PORT || 5000
+
     app.listen(port, () => {
       console.log(`API server listening at http://localhost:${port}`);
     });

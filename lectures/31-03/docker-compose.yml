@@ -6,6 +6,12 @@ services:
     build: 
       dockerfile: Dockerfile.dev
       context: ./mybackend
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=myappdb
+      - POSTGRES_USER=myappuser
+      - POSTGRES_HOST=mypostgres
+      - REDIS_HOST=myredis
   
   mynginx:
     restart: always
@@ -14,3 +20,14 @@ services:
       context: ./mynginx
     ports:
       -  '9090:80'
+
+  myredis:
+    image: 'redis:alpine'
+
+  myfrontend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./myfrontend
+    volumes:
+      - /opt/app/node_modules
+      - ./myfrontend:/opt/app
