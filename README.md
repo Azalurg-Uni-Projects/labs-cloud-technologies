@@ -54,6 +54,13 @@ CMD node index.js
 - ``network inspect name`` - returns information about one or more networks
 - ``docker network connect NETWORK CONTAINER`` - connects a container to a network
 
+## lab06
+
+- ``docker-compose up`` - builds, starts, and attaches to containers for a service
+- ``docker-compose up -d`` - run containers in the background
+- ``docker-compose stop`` - stops running containers without removing them
+- ``docker-compose down --volumes`` - stops containers and remove named volumes declared in the volumes section of the Compose file
+
 ### lectures
 
 - ``run -p local-port:server-port`` - port mapping
