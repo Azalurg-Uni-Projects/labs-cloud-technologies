@@ -18,12 +18,12 @@ const PORT = process.env.PGPORT;
 
 
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.send('Hello World?');
 });
 
 app.get('/redis', async (req, res) => {
   try{
-   const response = client.get('*')
+   const response = await client.get('*')
     res.json(response);
   } catch (err){
     console.log(err.message);
@@ -35,7 +35,7 @@ app.post('/redis', async (req, res) =>{
   const key = req.body.key;
   const val = req.body.val;
   try{
-    client.set(key, val)
+    await client.set(key, val)
     res.send({key: val})
   }
   catch(err){
