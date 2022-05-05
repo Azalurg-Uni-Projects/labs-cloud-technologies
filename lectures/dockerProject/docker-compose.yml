@@ -1,0 +1,64 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:14.1-alpine
+    environment:
+      - POSTGRES_DB:postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=tajne
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+
+  cache:
+    image: redis:6.2-alpine
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes: 
+      - cache:/data
+
+  mybackend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./mybackend
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=tajne
+      - REDIS_PORT=6379
+      - REDIS_HOST=cache
+    ports:
+      - 8080:8080
+    links:
+      - db
+      - cache
+    depends_on:
+      - cache
+      - db
+
+  myfrontend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./myfrontend
+    volumes:
+      - /opt/app/node_modules
+      - ./myfrontend:/opt/app
+
+  mynginx:
+    build:
+      dockerfile: Dockerfile
+      context: ./mynginx
+    ports:
+      - '9090:80'
+    depends_on:
+      - myfrontend
+      - mybackend
+  
+volumes:
+  db:
+    driver: local
+  cache:
+    driver: local
