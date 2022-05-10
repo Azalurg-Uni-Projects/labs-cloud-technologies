@@ -74,7 +74,10 @@ CMD node index.js
 - ``kubectl describe TYPE NAME`` - will print debug information about the given resource
 - ``kubectl create -f NAME`` - create a resource from a file or from stdin
 - ``kubectl delete TYPE NAME`` 
-
+- `kubectl apply -f NAME` - 
+- `kubectl scale --replicas=XXX -f NAME`
+- `kubectl logs -f NAME`
+- `kubectl exec -it NAME -- COMMAND``
 ### Something
 
 - ``ip addr`` - IP checking
