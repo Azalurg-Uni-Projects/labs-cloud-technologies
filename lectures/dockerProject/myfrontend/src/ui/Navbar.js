@@ -6,6 +6,7 @@ const Navbar = () => {
       <div className="navbarContent">
         <Link to={`/`}> Start </Link>
         <Link to={`/users`}> Users </Link>
+        <Link to={`/users`}> Users </Link>
       </div>
     </div>
   );

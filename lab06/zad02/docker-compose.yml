@@ -8,11 +8,11 @@ services:
     environment:
       - PGPORT=5000
       - REDIS_PORT=6379
-      - REDIS_HOST=127.0.0.1
+      - REDIS_HOST=redis
     ports:
-      - 5000:5000
+      -  5000:5000
   
-  myredis:
-    image: 'redis:alpine'
-    ports: 
+  redis:
+    image: redis:alpine
+    ports:
       - 6379:6379
