@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod-2
+spec:
+ restartPolicy: Always
+ containers:
+ - name: nginx-pod-2
+   image: nginx:alpine
+   command: ["/bin/sh","-c"]
+   args: ["nginx && wget 127.0.0.1:80"]
+   ports:
+    - containerPort: 80
+  
+
