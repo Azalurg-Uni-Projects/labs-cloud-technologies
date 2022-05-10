@@ -73,7 +73,7 @@ CMD node index.js
 - ``kubectl get pods`` - prints a table of the most important information about the specified resources
 - ``kubectl describe TYPE NAME`` - will print debug information about the given resource
 - ``kubectl create -f NAME`` - create a resource from a file or from stdin
-- ``>kubectl delete TYPE NAME`` 
+- ``kubectl delete TYPE NAME`` 
 
 ### Something
 
