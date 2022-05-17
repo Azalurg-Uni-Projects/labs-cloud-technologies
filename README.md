@@ -70,14 +70,27 @@ CMD node index.js
 - ``network inspect`` - show extra details
 - ``network create NAME`` - create own docker network
 
-- ``kubectl get pods`` - prints a table of the most important information about the specified resources
-- ``kubectl describe TYPE NAME`` - will print debug information about the given resource
-- ``kubectl create -f NAME`` - create a resource from a file or from stdin
-- ``kubectl delete TYPE NAME`` 
-- `kubectl apply -f NAME` - 
-- `kubectl scale --replicas=XXX -f NAME`
-- `kubectl logs -f NAME`
-- `kubectl exec -it NAME -- COMMAND``
+### kubectl
+
+- `get pods` - prints a table of the most important information about the specified resources
+- `get all` - prints all
+- `describe TYPE NAME` - will print debug information about the given resource
+- `create -f NAME` - create a resource from a file or from stdin
+- `delete TYPE NAME` - delete resources by file names
+- `apply -f NAME` - apply a configuration to a resource by file name or stdin
+- `scale --replicas=XXX -f NAME` - set a new size for a deployment
+- `logs -f NAME` - print the logs for a container in a pod or specified resource
+- `exec -it NAME -- COMMAND` - execute a command in a container
+  
+### kubectl - types
+
+- pod
+- replicaset
+- deployment
+- nodeport
+- configmaps
+- [more](https://kubernetes.io/docs/reference/kubectl/#resource-types)
+  
 ### Something
 
 - ``ip addr`` - IP checking

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: lab-replicaset
+  labels:
+    app: myapp
+
+spec:
+  selector:
+    matchLabels: 
+      app: lab-frontend
+
+  replicas: 1
+  template: 
+    metadata: 
+      name: lab-pod
+      labels: 
+        app: lab-frontend
+        
+    spec:
+     containers:
+     - name: lab-container
+       image: 7025bc408f14
