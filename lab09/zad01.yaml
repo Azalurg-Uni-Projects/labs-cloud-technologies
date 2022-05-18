@@ -20,4 +20,4 @@ spec:
     spec:
      containers:
      - name: lab-container
-       image: 7025bc408f14
+       image: reactapp
