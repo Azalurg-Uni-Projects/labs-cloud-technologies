@@ -1,11 +1,9 @@
 FROM node:alpine
 
-WORKDIR /opt/backend
+WORKDIR '/opt/backend'
 
 COPY ./package.json ./
+RUN npm install
+COPY . .
 
-RUN yarn install
-
-COPY ./ ./
-
-CMD nodemon index.js
+CMD ["npm", "run", "dev"]
