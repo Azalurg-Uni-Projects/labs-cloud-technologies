@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  server:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./
+    ports:
+      - '5001:5001'
+    volumes:
+      - .:/server
+      - /server/node_modules
+    environment:
+      - PORT=5001
