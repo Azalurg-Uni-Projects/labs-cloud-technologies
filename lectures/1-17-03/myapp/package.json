@@ -1,0 +1,22 @@
+{
+  "name": "cloud-technologies",
+  "version": "1.0.0",
+  "description": "Cloud technologies repository, semester IV.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Azalurg/cloud-technologies.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Azalurg/cloud-technologies/issues"
+  },
+  "homepage": "https://github.com/Azalurg/cloud-technologies#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}

@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS nwd (
+    a INT NOT NULL,
+    b INT NOT NULL,
+    result INT NOT NULL,
+    PRIMARY KEY(a, b)
+);

@@ -1,0 +1,3 @@
+FROM alpine:latest
+
+CMD ["curl", "127.0.0.1:5000/movies"]

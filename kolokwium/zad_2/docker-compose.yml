@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  backend:
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./backend
+    environment:
+      - PGPASSWORD=tajne
+      - PGDATABASE=postgres
+      - PGUSER=postgres
+      - PGHOST=postgres
+      - PGPORT=8080
+    volumes:
+      - /opt/backend/node_modules
+      - ./backend:/opt/backend
+    ports:
+      -  8080:8080
+
+  nginx:
+    restart: always
+    build: 
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      -  '9090:80'
+    depends_on:
+      - client
+      - backend
+
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client
+    volumes:
+      - ./client:/opt/client
+      - /opt/client/node_modules
+
+  db:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=tajne
+    ports:
+      - '5432:5432'
+      

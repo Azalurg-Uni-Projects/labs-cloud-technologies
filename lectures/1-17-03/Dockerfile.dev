@@ -1,0 +1,8 @@
+# Wybieranie obrazu bazowego
+FROM alpine:latest
+
+# Seria komend
+RUN apk add --update redis
+
+# Definicja procesu głównego
+CMD ["redis-server"]

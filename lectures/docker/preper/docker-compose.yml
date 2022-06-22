@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  mybackend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./mybackend
+    environment:
+      - PORT=8080
+      - REDIS_PORT=6379
+      - REDIS_HOST="127.0.0.1"
+    ports:
+      -  8080:8080
+    depends_on:
+      - redis
+    links:
+      - redis
+  
+  myfrontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./myfrontend
+    volumes:
+      - /opt/app/node_modules
+      - ./myfrontend:/opt/app
+
+  redis:
+    image: redis:alpine
+    ports:
+      - '6379:6379'
+    volumes:
+      - cache:/data
+
+  mynginx:
+    build:
+      dockerfile: Dockerfile
+      context: ./mynginx
+    ports:
+      - '9090:80'
+    depends_on:
+      - myfrontend
+      - mybackend
+
+volumes:
+  cache:
+    driver: local

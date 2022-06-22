@@ -1,0 +1,2 @@
+FROM busybox
+CMD Hello from my dockerfile!
