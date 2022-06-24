@@ -1,12 +1,97 @@
-# cloud-technologies
-Cloud technologies repository, semester IV.
+# k8s-react-mongodb-app
 
--[] Napisać że mam kontener na dockerhub
+Hi,
+this repository contains the code for creating a sample MERN-type web application showing the operation of the Kubernetes cluster. Inside the k8s configuration, I used such elements as Ingress, ClusterIP, NodePort, PV, PVC. If you have no idea what I'm talking about, below in the "Links" section you will find the sources with various articles or documentation I read in process of creation.
 
-## Notataka
+Configuration contains:
 
-- Sprawdzić instalacje minikube i ingress
-- PVC i PV - ukryte pliki
-- Mongo - IP mogę ustawić ręcznie
-- Jak wszytko będzie działać dodać ConfigMap
-- Przeczytać wymagania
+- Client in React (js)
+- API-server (runs with Node.js and Express.js)
+- Database in MongoDB with cache in Redis
+- YAML files to create k8s cluster
+
+## Flow
+
+1. The user views the React web app with a browser.
+2. The React front end communicates with the Express back end via RESTful APIs.
+3. The back-end Express application uses the Mongo database for storing and retrieving data.
+4. Back-end results are communicated back to the front end.
+5. Front-end results are rendered in a human-readable format to the user.
+
+## Requirements
+
+- Docker
+- Kubernetes
+- Mnikube
+
+Configuration was created under Linux OS, so I don't know if it is going to work under Windows OS.
+
+## Quick start
+
+1. Apply all `.yaml` files to k8s
+2. Check your minikube IP
+3. Add the following line to the bottom of the /etc/hosts file on your computer (you will need administrator access):
+
+  ```bash
+  [minikube IP] todo-app-k8s.com
+  ```
+  
+4. After you make this change, your web browser sends requests for todo-app-k8s.com URLs to Minikube.
+
+## Default URLs
+
+Client web-app:
+
+```text
+www.todo-app-k8s.com
+```
+
+API server:
+
+```text
+www.todo-app-k8s.com/api
+```
+
+## Links
+
+- [Helpful article](https://l.facebook.com/l.php?u=https%3A%2F%2Fgithub.com%2Freact-static%2Freact-static%2Fdiscussions%2F1465%3Ffbclid%3DIwAR2gbS7yDgDT8G92iIXwA_BenD9wYDPq3k4b_6teIAy3Bnty3IBbB2GDdg4&h=AT0I0KHHzEbTPp-gCeikGkzl09qVRsZyPntJbpAtNdR7ws3PB0ARQ_Z7ZwA3hs43I-PUu0U6ns30jDGpC2YavukwYwbbq1Lz2RsBEcSa9YZeMwfQC9lkjEfZEmT3bQ)
+- [Ingres and minikube setup](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/)
+
+## My Docker Hub
+
+You will find [here](https://hub.docker.com/u/azalurg) ready to use docker images.
+
+## Configuration details
+
+- All deployments in the cluster has own NodePorts. They are not crucial for app to work and they are for development purposes.
+
+<table>
+  <tr>
+    <th>Deployment</th>
+    <th>PORT</th>
+  </tr>
+  <tr>
+    <th>Client</th>
+    <th>30080</th>
+  </tr>
+  <tr>
+    <th>Server</th>
+    <th>30500</th>
+  </tr>
+  <tr>
+    <th>MongoDB</th>
+    <th>30270</th>
+  </tr>
+  <tr>
+    <th>Redis</th>
+    <th>30379</th>
+  </tr>
+</table>
+
+- Mongo, Redis, and the API server only have one pod in my setup, but the client has 3. That's because I expect the client to have the most traffic to serve. If necessary, you can always change the number of pods with the client.
+
+## Todo
+
+- [ ] Fix Redis error
+- [X] Finish README
+- [ ] Create backend documentation
